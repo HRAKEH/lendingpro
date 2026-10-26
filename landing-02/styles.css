@@ -1,0 +1,35 @@
+:root{color-scheme:dark;--bg:#14221d;--accent:#a9edb9;--text:#f8f9ff;--muted:#b9bfd0;--panel:rgba(255,255,255,.055);--border:rgba(255,255,255,.15)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.skip{position:absolute;top:-80px;left:10px;padding:10px;background:#fff;color:#111;z-index:20}
+.skip:focus{top:10px}
+.container{width:min(1100px,calc(100% - 38px));margin-inline:auto}
+header{border-bottom:1px solid var(--border)}
+.header{display:flex;align-items:center;justify-content:space-between;min-height:76px;gap:20px}
+.brand{font-weight:850;letter-spacing:.12em;text-decoration:none;font-size:.85rem}
+nav{display:flex;gap:22px}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--text)}
+.hero{position:relative;overflow:hidden;min-height:530px;display:flex;align-items:center;isolation:isolate}
+.hero-content{padding-block:90px 110px;position:relative;z-index:1}
+.kicker{font-weight:750;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-size:.77rem}
+h1,h2,h3{line-height:1.13;letter-spacing:-.045em}
+h1{font-size:clamp(3rem,7vw,6.6rem);margin:22px 0}
+h1 span,.card strong{color:var(--accent)}
+.lead{font-size:clamp(1rem,1.7vw,1.22rem);max-width:650px;color:var(--muted);margin-bottom:32px}
+.cta{display:inline-block;background:var(--accent);border-radius:999px;color:#121522;padding:14px 23px;text-decoration:none;font-weight:800}
+.orb{position:absolute;inset:auto -140px 30px auto;background:radial-gradient(circle,var(--accent),transparent 68%);width:420px;height:420px;opacity:.16;filter:blur(18px);z-index:0;pointer-events:none}
+.section{padding:85px 0}
+h2{font-size:clamp(2rem,4.5vw,3.6rem);margin:15px 0 36px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{border:1px solid var(--border);border-radius:20px;padding:30px;background:var(--panel)}
+.card h3{font-size:1.55rem;margin:26px 0 10px}
+.card p,.contact p{color:var(--muted)}
+.contact{background:rgba(255,255,255,.025);border-top:1px solid var(--border)}
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:.8rem}
+footer .container{padding-block:24px}
+@media(max-width:680px){.header{min-height:66px}.brand{font-size:.75rem}nav{gap:13px}nav a{font-size:.85rem}.hero-content{padding-block:70px 85px}.section{padding:65px 0}.cards{grid-template-columns:1fr}.card{padding:24px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
