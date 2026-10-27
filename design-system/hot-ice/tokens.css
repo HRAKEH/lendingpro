@@ -1,0 +1,15 @@
+/* LendingPro — Hot Ice: APPROVED C2/F1, 2026-10-27
+   Import/serve Manrope 700/800 and Golos Text 400/500/600 separately.
+   Ensure font files are licensed and have Cyrillic glyph coverage. */
+:root {
+  --color-bg: #F2F8FD;
+  --color-text: #102B46;
+  --color-primary: #236AA5;
+  --color-soft: #C5E8F5;
+  --color-on-primary: #FFFFFF;
+  --font-heading: "Manrope", Arial, sans-serif;
+  --font-body: "Golos Text", Arial, sans-serif;
+}
+body { font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 800; }
+button, .cta { background: var(--color-primary); color: var(--color-on-primary); }

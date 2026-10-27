@@ -1,0 +1,15 @@
+/* LendingPro — Mikozacid: APPROVED C1/F1, 2026-10-27
+   Import/serve Onest 700/800 and Golos Text 400/500/600 separately.
+   Ensure font files are licensed and have Cyrillic glyph coverage. */
+:root {
+  --color-bg: #F5FAF7;
+  --color-text: #192B27;
+  --color-primary: #146B58;
+  --color-soft: #CDE5DC;
+  --color-on-primary: #FFFFFF;
+  --font-heading: "Onest", Arial, sans-serif;
+  --font-body: "Golos Text", Arial, sans-serif;
+}
+body { font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 800; }
+button, .cta { background: var(--color-primary); color: var(--color-on-primary); }
