@@ -1,5 +1,14 @@
 # История изменений
 
+## 2026-10-28 — v8.1 Motion Studio
+- Создана ветка `archive/v8-first-rebuild`, сохраняющая всю исходную v8.
+- На `main/next-v8/` обеим страницам добавлены masked type reveal, прозрачные prismatic scenes, лёгкий scrub parallax, hover lighting и sticky 3-step progress.
+- Для мобильного остаются облегчённые эффекты, без принудительного smooth-scroll; reduced-motion поддерживается.
+- Оригинальные изображения, текст, SEO, CTA не изменены. ZIP: `releases/zdrava-v8-motion-studio-timeweb.zip`.
+- Проверены fallback в Chromium (360,390,768,1440), JS и CSS синтаксис. CDN-анимации в тестовом браузере заблокированы — не заявлять полную анимационную QA.
+- Timeweb не тронут.
+
+
 ## 2026-10-28 — С нуля разработаны два лендинга v8
 - Отдельная архивная ветка `archive/v7-cinematic-motion` сохраняет полную v7.
 - Добавлены независимые новые сайты `next-v8/mikozacid/`, `next-v8/hot-ice/`: single-file HTML и готовые оригинальные фото, оригинальные OG-макеты.

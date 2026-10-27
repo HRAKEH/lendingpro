@@ -1,6 +1,14 @@
 # LendingPro — товарные лендинги ЗДРАВА
 
-## 🆕 Новая разработка v8 (28.10.2026)
+## ✨ Версия v8.1 Motion Studio (28.10.2026)
+
+- **Актуальная v8.1**: `next-v8/mikozacid/`, `next-v8/hot-ice/` — улучшенная анимация, стеклянные слои и scroll-ритуал.
+- **[Готовый ZIP для Timeweb](releases/zdrava-v8-motion-studio-timeweb.zip)**.
+- **[Описание анимаций и честный статус QA](docs/MOTION_V8_1.md)**.
+- **[Архив исходной v8](https://github.com/HRAKEH/lendingpro/tree/archive/v8-first-rebuild)** и **[архив v7](https://github.com/HRAKEH/lendingpro/tree/archive/v7-cinematic-motion)**.
+- На Timeweb ничего не публиковалось; версии `mikozacid/` и `hot-ice/` в корне остались без изменений.
+
+## Историческая разработка v8 (28.10.2026)
 - [**Микозацид v8**](next-v8/mikozacid/index.html) — полностью новый responsive HTML, оригинальный PNG, OG, анимации, SEO.
 - [**Горячий лёд v8**](next-v8/hot-ice/index.html) — полностью новый responsive HTML, оригинальный PNG, OG, анимации, SEO.
 - [**Скачать ZIP для тестирования на Timeweb**](releases/zdrava-next-v8-timeweb.zip) — обе новые страницы вместе.
