@@ -1,0 +1,105 @@
+/* LendingPro / Editorial 2026: adapted from two approved palettes; only Onest & Golos Text */
+:root{--display:"Onest",sans-serif;--body:"Golos Text",sans-serif;--hero-media:#dceee3;--detail:#d9e7df;--hero-stamp:#146B58}
+body{font-family:var(--body);background:var(--bg);font-size:16px}
+h1,h2,h3,.logo{font-family:var(--display)}
+.site-header{background:var(--bg);position:relative}
+.head-inner{height:82px;border-bottom:1px solid color-mix(in srgb,var(--accent) 18%,transparent)}
+.logo{font-size:24px;font-weight:800;letter-spacing:-.055em}
+.main-nav a{transition:color .2s ease}.main-nav a:hover{color:var(--accent)}
+.hero{padding:32px 0 52px;overflow:hidden}
+.hero-layout{grid-template-columns:minmax(0,1fr) minmax(425px,.90fr);gap:clamp(36px,5.1vw,75px);align-items:center}
+.hero-copy{padding:35px 0 34px;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font:600 12px/1.4 var(--body);letter-spacing:.11em;color:var(--accent)}
+.eyebrow::before{content:"";height:1px;width:29px;background:var(--accent)}
+.hero h1{font:800 clamp(58px,5.35vw,83px)/1.065 var(--display);letter-spacing:-.072em;margin:24px 0 28px;max-width:740px}
+.hero .italic-accent{color:var(--accent);font-weight:700}
+.hero-intro{max-width:560px;font-size:clamp(17px,1.5vw,20px);line-height:1.7;opacity:.84;margin:0 0 32px}
+.market-actions{gap:10px}
+.market-actions .btn{min-height:60px;border-radius:6px;padding:0 25px;min-width:188px;font-weight:700;justify-content:space-between;box-shadow:none}
+.btn{transition:background .22s,box-shadow .22s,transform .22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(0,0,0,.09)}
+.btn:active{transform:scale(.985)}
+.btn-arrow{transition:transform .21s}.btn:hover .btn-arrow{transform:translate(3px,-3px)}
+.hero-footnote{font-size:13px;color:var(--accent);letter-spacing:.015em;margin:24px 0 0;font-weight:500}
+.hero-visual{min-width:0}
+.photo-stage{position:relative;overflow:visible;isolation:isolate;min-height:650px;max-width:585px;margin:0 auto;display:flex;justify-content:center;align-items:center;border-radius:0;background:var(--hero-media)}
+.photo-stage::before{content:"";position:absolute;inset:28px;border:1px solid color-mix(in srgb,var(--accent) 21%,transparent);border-radius:50% 50% 45% 45%;pointer-events:none;opacity:.45}
+.photo-stage::after{content:"";position:absolute;width:80%;height:20%;bottom:22px;left:10%;border-radius:50%;background:radial-gradient(ellipse,rgba(20,52,50,.13) 0,transparent 69%);z-index:-1}
+.photo-overline{position:absolute;top:27px;left:34px;z-index:3;color:var(--accent);letter-spacing:.09em;font:600 11px/1.4 var(--body);max-width:240px}
+.photo-volume{position:absolute;bottom:27px;right:33px;font:600 12px var(--body);color:var(--accent);z-index:3;border-bottom:1px solid currentColor;padding-bottom:8px}
+.photo-stage .product-photo{position:relative;inset:auto;margin:0;width:auto;height:auto;max-height:650px;max-width:96%;padding:17px 3px 12px;display:block;object-fit:contain;filter:drop-shadow(0 27px 20px rgba(15,49,40,.21));z-index:2;transform:none}
+.photo-stage--mikozacid{background:#DBE9DF}
+.photo-stage--hot-ice{background:#D9EFF9}
+.photo-stage--hot-ice::before{border-radius:42% 42% 50% 50%}
+.photo-stage--hot-ice .product-photo{max-height:640px;padding:28px 7px 15px;filter:drop-shadow(0 25px 22px rgba(17,55,92,.16))}
+/* A naturally editorial line and section rhythm instead of repetitive identical cards. */
+.subline{background:var(--accent);color:#fff;border:0}
+.subline-inner{min-height:72px;gap:24px;letter-spacing:.02em}
+.subline-inner a{color:#fff}.subline-divider{background:rgba(255,255,255,.35)}
+.section{padding:clamp(92px,9vw,142px) 0}
+h2{font-size:clamp(39px,4.7vw,69px);letter-spacing:-.057em;line-height:1.08}
+.section-label{color:var(--accent);font-size:12px;letter-spacing:.09em}
+.intro-section{background:#fff}
+.introduction{align-items:center;gap:11%}
+.intro-side .lead-text{font-family:var(--display);font-weight:500;letter-spacing:-.024em}
+.occasion-section{padding:100px 0;background:var(--bg)}
+.occasion-grid{gap:44px}
+.occasion{border-top:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding-top:24px}
+.occasion h3,.ingredient h3{font-weight:700;letter-spacing:-.04em}
+.ingredients-section{background:#fff}
+.ingredients-grid{gap:35px}
+.ingredient{min-height:unset;padding-top:23px}
+.full-composition{margin-top:38px}
+.ritual-section{background:var(--bg)}
+.ritual-steps li{border-top-color:color-mix(in srgb,var(--accent) 25%,transparent)}
+.questions-section{background:#fff}
+.purchase-section{background:var(--accent);color:#fff;padding:100px 0}
+.purchase-section .section-label{color:rgba(255,255,255,.74)}
+.purchase-section p{color:rgba(255,255,255,.78)}
+.purchase-section .purchase-links .btn-primary{background:#fff;color:var(--accent);border-color:#fff}
+.purchase-section .purchase-links .btn-alt{background:transparent;border:1px solid rgba(255,255,255,.75);color:#fff}
+.purchase-section .purchase-links .btn:hover{box-shadow:0 12px 25px rgba(0,0,0,.1)}
+.site-footer{background:var(--bg)}
+/* Responsive composition: image is shown directly after hero copy, never distorted. */
+@media(max-width:1100px){
+ .hero-layout{grid-template-columns:minmax(0,1fr) minmax(350px,.9fr);gap:26px}
+ .hero h1{font-size:clamp(48px,5.9vw,66px)}
+ .photo-stage{min-height:520px}.photo-stage .product-photo{max-height:515px}
+}
+@media(max-width:800px){
+ .hero{padding:28px 0 64px}
+ .hero-layout{grid-template-columns:1fr;gap:39px}
+ .hero-copy{padding:35px 0 0}
+ .hero h1{font-size:clamp(47px,7.2vw,67px);margin:20px 0 22px}
+ .hero-intro{font-size:17px;line-height:1.65}
+ .photo-stage{min-height:520px;max-width:570px}
+ .photo-stage .product-photo{max-height:515px}
+ .section{padding:88px 0}
+ .occasion-section{padding:90px 0}
+}
+@media(max-width:600px){
+ .wrap{width:calc(100% - 40px)}
+ .head-inner{height:74px}
+ .hero{padding:14px 0 42px}
+ .hero-layout{gap:28px}
+ .hero-copy{padding:29px 0 0}
+ .eyebrow{font-size:10px;letter-spacing:.085em}
+ .hero h1{font-size:clamp(44px,10.2vw,60px);letter-spacing:-.065em;line-height:1.08}
+ .hero-intro{font-size:16px;line-height:1.66;margin-bottom:23px}
+ .market-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ .market-actions .btn{min-width:0;width:100%;height:58px;padding:0 14px;font-size:14px;gap:7px}
+ .btn-arrow{font-size:17px}
+ .hero-footnote{font-size:12px;margin-top:21px}
+ .photo-stage{min-height:470px;width:100%;max-width:100%}
+ .photo-stage::before{inset:23px}
+ .photo-stage .product-photo{max-height:469px;max-width:96%;padding:26px 5px 9px}
+ .photo-overline{font-size:9px;top:18px;left:16px;max-width:180px}
+ .photo-volume{bottom:21px;right:20px}
+ .section{padding:78px 0}
+ h2{font-size:clamp(35px,9vw,46px)}
+ .occasion-section{padding:75px 0}
+ .purchase-section{padding:80px 0}
+ .subline-inner{min-height:64px}
+}
+@media(max-width:360px){.market-actions .btn{padding:0 9px;font-size:13px}.hero h1{font-size:44px}.photo-stage{min-height:437px}.photo-stage .product-photo{max-height:435px}}
+@media(prefers-reduced-motion:reduce){.photo-stage .product-photo,.market-actions .btn{animation:none!important;transition:none!important}}

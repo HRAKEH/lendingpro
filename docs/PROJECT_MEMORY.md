@@ -65,3 +65,6 @@
 
 ## 28.10.2026 — Актуальная версия v7: Cinematic Motion
 Пользователь запросил наиболее выразительную дизайнерскую реализацию с изучением Land-book. В чате создан **`lendingpro-timeweb-v7-cinematic-motion.zip`**: обе страницы дополнены H1 line-mask reveal, pointer-reactive light без изменения упаковки, editorial interlude со scroll parallax, hover CTA, scroll-progress и мобильным доком Ozon/WB. Добавлен процедурный texture.png, сами product.png побайтово совпадают с v6. **Это последний ZIP для предпросмотра**; Timeweb не изменён, сами файлы v7 пока не загружены в GitHub. [Детали v7](LANDING_V7_MOTION.md). Браузерная проверка в текущей среде заблокирована, статическая/JS проверка пройдена.
+
+## 2026-10-28 — ВЕСЬ КОД И АССЕТЫ РЕАЛЬНО ПЕРЕНЕСЕНЫ НА GITHUB
+Это более поздняя запись, чем старые заметки «код ещё не загружен». Актуальные **`mikozacid/`**, **`hot-ice/`**, **`flebodia/`**, **`source-assets/`**, **`releases/lendingpro-timeweb-v7-cinematic-motion.zip`** и вспомогательные `tools/v7-sources/` загружены в **главную ветку** GitHub, без изменений байтов исходного архива v7 и файлов упаковок. В корне обновлён README и добавлен [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md). GitHub сохранение не означает публикацию на Timeweb. Исходные ZIP и photos теперь не нужно искать только в старом чате.
