@@ -1,5 +1,14 @@
 # История изменений
 
+## 2026-10-28 — С нуля разработаны два лендинга v8
+- Отдельная архивная ветка `archive/v7-cinematic-motion` сохраняет полную v7.
+- Добавлены независимые новые сайты `next-v8/mikozacid/`, `next-v8/hot-ice/`: single-file HTML и готовые оригинальные фото, оригинальные OG-макеты.
+- Два одобренных семейства Onest + Golos Text, новый editorial-дизайн и мягкие GSAP/Lenis-enhancements с fallback.
+- SEO, JSON-LD, нативный FAQ, CTA Ozon/WB, слоты аналитики, шаблоны sitemap/robots.
+- Browser QA временно недоступна (ERR_BLOCKED_BY_ADMINISTRATOR), статическая проверка выполнена.
+- Timeweb не изменён, v7-код в корне не перезаписан.
+
+
 ## 2026-10-28 — Все исходники и изображения загружены в GitHub
 - В main добавлены 2 сайта актуальной v7 с HTML/CSS/JS, PNG упаковок и микротекстурами.
 - Добавлен архив `releases/lendingpro-timeweb-v7-cinematic-motion.zip` побайтово из локального релиза.

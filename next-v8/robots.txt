@@ -1,0 +1,4 @@
+# TEMPLATE. Publish in domain root ONLY after release approval.
+User-agent: *
+Allow: /
+Sitemap: https://zdrava.top/sitemap.xml

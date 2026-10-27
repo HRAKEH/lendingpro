@@ -68,3 +68,6 @@
 
 ## 2026-10-28 — ВЕСЬ КОД И АССЕТЫ РЕАЛЬНО ПЕРЕНЕСЕНЫ НА GITHUB
 Это более поздняя запись, чем старые заметки «код ещё не загружен». Актуальные **`mikozacid/`**, **`hot-ice/`**, **`flebodia/`**, **`source-assets/`**, **`releases/lendingpro-timeweb-v7-cinematic-motion.zip`** и вспомогательные `tools/v7-sources/` загружены в **главную ветку** GitHub, без изменений байтов исходного архива v7 и файлов упаковок. В корне обновлён README и добавлен [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md). GitHub сохранение не означает публикацию на Timeweb. Исходные ZIP и photos теперь не нужно искать только в старом чате.
+
+## 2026-10-28 — НОВАЯ ВЕРСИЯ v8 СОЗДАНА С НУЛЯ И СОХРАНЕНА
+**Ветвь `archive/v7-cinematic-motion` — полная v7 до изменений.** На main добавлены `next-v8/mikozacid/` и `next-v8/hot-ice/` (новые одиночные index.html, фото, OG-превью, favicon, исходники CSS/JS), `releases/zdrava-next-v8-timeweb.zip`, `docs/MASTER_TZ_2026_10_28.txt`, `tools/v8/`. Старые рабочие `mikozacid/`, `hot-ice/`, `flebodia/` НЕ тронуты. Это **новый черновой релиз, не размещённый на Timeweb**. Сохраняются Onest+Golos Text, реальные PNG упаковок. Канонический домен из мастер-ТЗ `zdrava.top` требуется подтвердить. SEO noindex, Метрика без ID, статический QA пройден; браузер заблокирован окружением. Подробности: [LANDING_V8_REBUILD.md](LANDING_V8_REBUILD.md).
