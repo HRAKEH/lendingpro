@@ -1,5 +1,11 @@
 # LendingPro — товарные лендинги ЗДРАВА
 
+## 28.10.2026 — Минималистичный вариант v8.5 (актуальный для согласования)
+- [Микозацид v8.5](next-v85/mikozacid/index.html) и [Горячий лёд v8.5](next-v85/hot-ice/index.html).
+- [Скачать автономный ZIP](releases/ZDRAVA_v8_5_MINIMAL_EDITORIAL.zip).
+- [Детали дизайна, анимации и QA](docs/MINIMAL_EDITORIAL_V85.md).
+- Предыдущие версии не перезаписаны. На Timeweb не публиковалось.\n
+
 ## 🎬 Актуальная v8.3 Cinematic Product Story
 - **Сайты:** `next-v8/mikozacid/`, `next-v8/hot-ice/`
 - **[Готовый ZIP Timeweb](releases/ZDRAVA_v8_3_CINEMATIC_FIXED.zip)** — 2 новых лендинга, оригинальные PNG упаковок, анимация в коде; 15 файлов.
