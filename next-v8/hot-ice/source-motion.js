@@ -75,3 +75,58 @@ function setupPointer(){
  doc.querySelectorAll('.scenario,.ing').forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%')},{passive:true})});
 }
 })();
+
+
+/* v8.2 Kinetic Editorial. Independent of GSAP, respects reduced motion. */
+(()=>{
+ 'use strict';
+ const doc=document,root=doc.documentElement;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const fine=matchMedia('(hover:hover) and (pointer:fine)');
+ const large=matchMedia('(min-width: 1100px)');
+ const sec=[...doc.querySelectorAll('main > section[id]')].filter(x=>x.id!=='top');
+ const rail=doc.querySelector('.chapter-rail');
+ const hero=doc.querySelector('.hero');
+ const buy=doc.getElementById('buy');
+ const links=[...doc.querySelectorAll('.chapter-rail a')];
+ const io='IntersectionObserver' in window;
+ if(io){
+  const draw=new IntersectionObserver((entries)=>{entries.forEach(({target,isIntersecting})=>{if(isIntersecting){target.classList.add('is-drawn');draw.unobserve(target)}})},{threshold:.2});
+  doc.querySelectorAll('.about-scene').forEach(el=>draw.observe(el));
+  const lines=new IntersectionObserver((entries)=>{entries.forEach(({target,isIntersecting})=>{if(isIntersecting){target.classList.add('is-inview');lines.unobserve(target)}})},{threshold:.08});
+  doc.querySelectorAll('.section,.buy').forEach(el=>lines.observe(el));
+ }else{doc.querySelectorAll('.about-scene').forEach(el=>el.classList.add('is-drawn'));doc.querySelectorAll('.section,.buy').forEach(el=>el.classList.add('is-inview'))}
+ // Section rail: progressive enhancement for precise navigation and scroll orientation.
+ let busy=false;
+ function updateRail(){busy=false;if(!rail)return;
+  const show=large.matches && (hero?.getBoundingClientRect().bottom??0)<110&&(buy?.getBoundingClientRect().top??0)>innerHeight*.36;
+  rail.classList.toggle('is-visible',!!show);
+  if(!show){links.forEach(a=>{a.classList.remove('is-active');a.removeAttribute('aria-current')});return}
+  let active=sec[0]?.id;
+  for(const s of sec){if(s.getBoundingClientRect().top<innerHeight*.47)active=s.id}
+  links.forEach(a=>{const yes=a.getAttribute('href')==='#'+active;a.classList.toggle('is-active',yes);if(yes)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')});
+ }
+ const onScroll=()=>{if(!busy){busy=true;requestAnimationFrame(updateRail)}};
+ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll,{passive:true});updateRail();
+ if(reduced.matches)return;
+ // Kinetic affordance on fine-pointer desktops only; no layout-triggering transforms.
+ if(fine.matches&&large.matches){
+  doc.querySelectorAll('.scenario,.ing').forEach(card=>{
+   let frame=0,tx=0,ty=0;
+   card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*4;ty=((e.clientY-r.top)/r.height-.5)*-4;if(!frame)frame=requestAnimationFrame(()=>{frame=0;card.style.setProperty('--tilt-x',tx.toFixed(2)+'deg');card.style.setProperty('--tilt-y',ty.toFixed(2)+'deg')})},{passive:true});
+   card.addEventListener('pointerleave',()=>{card.style.setProperty('--tilt-x','0deg');card.style.setProperty('--tilt-y','0deg')})
+  });
+  doc.querySelectorAll('.hero-copy .button,.buy .button').forEach(button=>{
+   let frame=0,x=0,y=0;
+   button.addEventListener('pointermove',e=>{const r=button.getBoundingClientRect();x=(e.clientX-r.left-r.width/2)*.075;y=(e.clientY-r.top-r.height/2)*.11;if(!frame)frame=requestAnimationFrame(()=>{frame=0;button.style.setProperty('--mag-x',x.toFixed(1)+'px');button.style.setProperty('--mag-y',y.toFixed(1)+'px')})},{passive:true});
+   button.addEventListener('pointerleave',()=>{button.style.setProperty('--mag-x','0px');button.style.setProperty('--mag-y','0px')})
+  });
+ }
+ // GSAP showcase layer: elegant scrubbing on the actual product, no bitmap edits.
+ const gsap=window.gsap,ST=window.ScrollTrigger;
+ if(gsap&&ST&&large.matches){
+  gsap.to('.hero-art .kinetic-halo',{rotation:72,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:2}});
+  gsap.to('.hero-art .art-product',{y:-25,rotation:1.2,ease:'none',scrollTrigger:{trigger:hero,start:'10% top',end:'bottom top',scrub:1.7}});
+  gsap.utils.toArray('.scenario').forEach((el,i)=>{gsap.fromTo(el,{clipPath:'inset(0 0 14% 0 round 1px)'},{clipPath:'inset(0 0 0% 0 round 1px)',duration:.9,scrollTrigger:{trigger:el,start:'top 92%',once:true}})});
+ }
+})();

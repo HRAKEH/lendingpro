@@ -1,5 +1,13 @@
 # История изменений
 
+## 2026-10-28 — v8.2 Kinetic Editorial
+- Ветвь `archive/v8-1-motion-studio` хранит предыдущую полную v8.1.
+- На `main/next-v8/` добавлены moving ribbon, CSS орбита и glint, scroll-drawn SVG trace, линия в Ingredients, glass chapter rail, pointer-tilt cards, magnetic CTA, дополнительный GSAP scroll shift упаковки.
+- Содержимое, метатеги и оригинальные PNG не менялись; обновлены inline HTML и исходники CSS/JS.
+- Playwright/Chromium fallback: обе страницы 360/390/768/1440, без overflow или JS ошибок, работают меню и FAQ.
+- Полный GSAP CDN-run и Lighthouse ещё не проверены. Timeweb не менялся.
+
+
 ## 2026-10-28 — v8.1 Motion Studio
 - Создана ветка `archive/v8-first-rebuild`, сохраняющая всю исходную v8.
 - На `main/next-v8/` обеим страницам добавлены masked type reveal, прозрачные prismatic scenes, лёгкий scrub parallax, hover lighting и sticky 3-step progress.
