@@ -1,5 +1,12 @@
 # История изменений
 
+## 2026-10-28 — v8.3 Cinematic Product Story
+- Встроена новая sticky-scene с процедурными ледяными кристаллами/ботаническими листьями на Canvas 2D, меняющаяся вместе со скроллом и не зависящая от GSAP.
+- Исправлены неравные отступы карточек состава. Проверка 360/390/768/1440 и disabled JS/CDN пройдена.
+- Оригинальные упаковки и исходные утверждения без изменений. Архив 15 файлов, без сжатия для совместимости.
+- Timeweb не изменён, noindex сохранён.
+
+
 ## 2026-10-28 — v8.2 Kinetic Editorial
 - Ветвь `archive/v8-1-motion-studio` хранит предыдущую полную v8.1.
 - На `main/next-v8/` добавлены moving ribbon, CSS орбита и glint, scroll-drawn SVG trace, линия в Ingredients, glass chapter rail, pointer-tilt cards, magnetic CTA, дополнительный GSAP scroll shift упаковки.

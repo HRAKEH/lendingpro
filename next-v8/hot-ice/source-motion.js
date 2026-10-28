@@ -130,3 +130,79 @@ function setupPointer(){
   gsap.utils.toArray('.scenario').forEach((el,i)=>{gsap.fromTo(el,{clipPath:'inset(0 0 14% 0 round 1px)'},{clipPath:'inset(0 0 0% 0 round 1px)',duration:.9,scrollTrigger:{trigger:el,start:'top 92%',once:true}})});
  }
 })();
+
+/* Product Story Engine 1.0: timeline is driven by actual scroll progress, not time. No external libraries. */
+(() => {
+  'use strict';
+  const sections=[...document.querySelectorAll('[data-product-story]')];
+  if (!sections.length) return;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  const small=matchMedia('(max-width: 700px)');
+  const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+  function engine(section){
+    const canvas=section.querySelector('canvas');
+    const ctx=canvas.getContext('2d',{alpha:true});
+    if (!ctx) return;
+    const product=section.querySelector('.experience__product');
+    const chapters=[...section.querySelectorAll('.experience__chapter')];
+    const bar=section.querySelector('.experience__progress i');
+    const count=section.querySelector('.experience__step');
+    const leaf=section.dataset.productStory==='botanical';
+    let w=0,h=0,dpr=1,current=0,target=0,ticking=false,visible=false,destroyed=false;
+    const seeded=(i)=>{let n=Math.sin(i*127.1+leaf*67.3)*43758.5453;return n-Math.floor(n)};
+    const shapes=Array.from({length:leaf?26:34},(_,i)=>({seed:seeded(i+2),az:seeded(i+120)*Math.PI*2,r:.15+seeded(i+200)*.56,s:7+seeded(i+500)*38,depth:.5+seeded(i+800)*.8}));
+    function resize(){const r=canvas.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);dpr=Math.min(devicePixelRatio||1,1.6);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw(current)}
+    function diamond(x,y,s,alpha,rotation){ctx.save();ctx.translate(x,y);ctx.rotate(rotation);ctx.strokeStyle='rgba(199,244,255,'+alpha+')';ctx.fillStyle='rgba(161,226,248,'+(alpha*.21)+')';ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(0,-s*1.7);ctx.lineTo(s*.72,-s*.23);ctx.lineTo(s*.6,s*.95);ctx.lineTo(0,s*1.5);ctx.lineTo(-s*.75,s*.37);ctx.closePath();ctx.fill();ctx.stroke();ctx.strokeStyle='rgba(255,255,255,'+(alpha*.6)+')';ctx.beginPath();ctx.moveTo(0,-s*1.7);ctx.lineTo(0,s*1.5);ctx.moveTo(-s*.75,s*.37);ctx.lineTo(s*.72,-s*.23);ctx.stroke();ctx.restore()}
+    function drawLeaf(x,y,s,alpha,rot){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.beginPath();ctx.moveTo(0,s*.9);ctx.bezierCurveTo(-s*.9,-s*.1,-s*.75,-s*.8,0,-s*1.5);ctx.bezierCurveTo(s*.78,-s*.8,s*.86,-s*.1,0,s*.9);ctx.fillStyle='rgba(174,231,174,'+(alpha*.5)+')';ctx.strokeStyle='rgba(213,254,224,'+alpha+')';ctx.lineWidth=1.2;ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(0,s*.9);ctx.quadraticCurveTo(s*.2,-s*.3,0,-s*1.5);ctx.strokeStyle='rgba(226,255,238,'+(alpha*.65)+')';ctx.stroke();ctx.restore()}
+    function draw(p){if(!w||!h||small.matches||reduce.matches){ctx.clearRect(0,0,w,h);return}
+      ctx.clearRect(0,0,w,h);
+      const cx=w*.73,cy=h*.49,base=Math.min(w,h)*.42;
+      // Scroll-driven refraction: the same progress animates rings, particles, and the typography.
+      for(let ring=0;ring<4;ring++){
+        const radius=base*(.45+ring*.27)+p*(ring%2?55:-34);
+        ctx.beginPath();ctx.ellipse(cx,cy,radius,radius*(.8+.03*ring),p*.55,0,Math.PI*2);
+        ctx.lineWidth=.75+ring*.19;
+        ctx.strokeStyle=leaf?'rgba(178,243,197,'+(.16-ring*.025)+')':'rgba(185,236,255,'+(.17-ring*.026)+')';ctx.stroke();
+      }
+      shapes.forEach((a,i)=>{
+        const move=p*Math.PI*(leaf?1.1:1.95),az=a.az+move*(i%2?1:-1),radius=base*(a.r+p*.12),x=cx+Math.cos(az)*radius*1.12,y=cy+Math.sin(az)*radius*.87;
+        const s=a.s*(.68+(1+p)*a.depth*.22),alpha=.13+.27*(1-Math.abs(p-.45))*a.depth;
+        if(leaf)drawLeaf(x,y,s,alpha,az+p*2.1);else diamond(x,y,s,alpha,az+p*1.2);
+      });
+      // Optical highlight crossing the foreground at the second chapter.
+      const phase=Math.sin((p-.17)*Math.PI*1.4);ctx.save();ctx.globalAlpha=Math.max(0,phase)*.17;ctx.translate(cx,cy);ctx.rotate(-.2+p*.6);const g=ctx.createLinearGradient(-base*.5,0,base*.5,0);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.5,'rgba(245,255,255,.87)');g.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=g;ctx.fillRect(-base*.5,-h,base,2*h);ctx.restore();
+    }
+    function render(p){
+      section.style.setProperty('--xp',p.toFixed(4));
+      if(!small.matches&&!reduce.matches){product.style.transform='translate3d(50%,calc(-50% + '+((p-.5)*-35).toFixed(1)+'px),0) rotate('+((p-.5)*-5).toFixed(2)+'deg) scale('+(1+p*.09).toFixed(4)+')';}
+      else{product.style.transform='translate3d(50%,-50%,0)'}
+      const phase=p*2;
+      const first=Math.min(1,Math.floor(phase));
+      const fraction=clamp(phase-first);
+      const blend=fraction*fraction*(3-2*fraction);
+      const active=p<.25?0:p<.75?1:2;
+      chapters.forEach((el,i)=>{
+        let alpha=(i===first?1-blend:0)+(i===first+1?blend:0);
+        if(small.matches||reduce.matches)alpha=i===0?1:0;
+        el.style.opacity=alpha.toFixed(3);
+        el.style.visibility=alpha>.025?'visible':'hidden';
+        el.style.transform='translate3d(0,'+((1-alpha)*25).toFixed(1)+'px,0)';
+        el.classList.toggle('is-active',i===active);
+      });
+      bar.style.transform='scaleX('+p.toFixed(4)+')';count.textContent=(active+1)+' / 3';
+      draw(p);
+    }
+    function scrollPosition(){if(small.matches||reduce.matches)return 0;const r=section.getBoundingClientRect();const total=Math.max(1,r.height-innerHeight);return clamp(-r.top/total)}
+    function tick(){ticking=false;if(destroyed)return;const delta=target-current;if(Math.abs(delta)>.0005){current+=delta*.2;render(current);request()}else{current=target;render(current)}}
+    function request(){if(!ticking){ticking=true;requestAnimationFrame(tick)}}
+    function scroll(){if(!visible)return;target=scrollPosition();request()}
+    const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible){target=scrollPosition();request()}},{rootMargin:'250px 0px 250px 0px'});
+    observer.observe(section);
+    const resizeObserver=new ResizeObserver(()=>{resize();target=scrollPosition();request()});resizeObserver.observe(canvas);
+    addEventListener('scroll',scroll,{passive:true});addEventListener('resize',()=>{target=scrollPosition();request()},{passive:true});
+    // All content remains available as original sections; story is decorative narrative.
+    reduce.addEventListener?.('change',()=>{target=scrollPosition();request()});small.addEventListener?.('change',()=>{resize();target=scrollPosition();request()});
+    resize();render(0);
+  }
+  sections.forEach(engine);
+})();
